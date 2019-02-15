@@ -22,7 +22,6 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 public class RuleManagerTest {
 
     @InjectMocks
-    private RuleManager ruleManager;
     private List<Ingrediente> ingredienteList;
 
     @Before
@@ -35,30 +34,6 @@ public class RuleManagerTest {
                         .price(1.0)
                         .build()
                 ).collect(toList());
-
-    }
-
-    @Test
-    public void shouldCalculateCorrectlyWithNoRules() {
-        Set<QuantidadeIngrediente> ingredientes = ingredienteList.stream()
-                .map(qtdeIngredientesSupplier)
-                .collect(toSet());
-
-        Double calculate = ruleManager.calculate(ingredientes);
-
-        assertThat(calculate).isEqualTo(5.0);
-    }
-
-    @Test
-    public void shouldCalculateDiscountForLightRule() {
-        ingredienteList.add(Ingrediente.builder().name("alface").pre);
-
-        /*
-        TODO:
-            We don't need discount for each ingredient, we need a total discount for the whole lanche
-
-         */
-
 
     }
 

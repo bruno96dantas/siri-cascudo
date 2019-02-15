@@ -31,9 +31,10 @@ public class EqualsRule extends Rule {
         }
     }
 
-
     @Override
-    public Double getDiscont(Double totalPrice) {
-        return null;
+    public boolean evaluate(IngredientesContext context) {
+        return false;
     }
+
+
 }

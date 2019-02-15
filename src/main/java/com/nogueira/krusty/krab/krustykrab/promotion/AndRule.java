@@ -23,7 +23,6 @@ public class AndRule extends Rule {
         super(id, Operator.AND, parent, children, targetIngredientName);
     }
 
-
     @Override
     public Double getDiscont(Double totalPrice) {
         return null;

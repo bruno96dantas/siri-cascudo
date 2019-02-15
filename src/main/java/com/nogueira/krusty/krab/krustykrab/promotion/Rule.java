@@ -29,7 +29,7 @@ public abstract class Rule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
+    private Long id;
 
     @Enumerated(STRING)
     @Column(insertable = false, updatable = false)
@@ -50,6 +50,8 @@ public abstract class Rule {
 
     public abstract void validate();
 
-    public abstract Double getDiscont(Double totalPrice);
+    public abstract boolean evaluate(IngredientesContext context);
+
+
 
 }

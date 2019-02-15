@@ -53,6 +53,12 @@ public class RuleManagerTest {
     public void shouldCalculateDiscountForLightRule() {
         ingredienteList.add(Ingrediente.builder().name("alface").pre);
 
+        /*
+        TODO:
+            We don't need discount for each ingredient, we need a total discount for the whole lanche
+
+         */
+
 
     }
 

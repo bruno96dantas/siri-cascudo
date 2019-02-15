@@ -1,7 +1,6 @@
 package com.nogueira.krusty.krab.krustykrab.rules;
 
-import com.nogueira.krusty.krab.krustykrab.model.Ingrediente;
-import com.nogueira.krusty.krab.krustykrab.promotion.IngredientesContext;
+import com.nogueira.krusty.krab.krustykrab.promotion.IngredienteContext;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -11,11 +10,6 @@ public abstract class RuleMain {
 
     private String targetIngredienteName;
 
-    public abstract Double getDiscount(IngredientesContext context, Ingrediente ingrediente, Double totalPrice);
+    public abstract Double getDiscount(IngredienteContext context, Double totalPrice);
 
-    public boolean isTargetIngredient(String currentIngredientName) {
-
-        return getTargetIngredienteName().equalsIgnoreCase(currentIngredientName);
-
-    }
 }

@@ -32,7 +32,7 @@ public class Promotion {
     @OneToOne
     private Rule rule;
 
-    public Double getDiscont(Double totalPrice, IngredientesContext context){
+    public Double getDiscont(Double totalPrice, IngredienteContext context){
         return null;
     }
 }

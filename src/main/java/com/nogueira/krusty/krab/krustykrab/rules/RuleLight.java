@@ -1,8 +1,9 @@
 package com.nogueira.krusty.krab.krustykrab.rules;
 
-import com.nogueira.krusty.krab.krustykrab.model.Ingrediente;
-import com.nogueira.krusty.krab.krustykrab.promotion.IngredientesContext;
+import com.nogueira.krusty.krab.krustykrab.promotion.IngredienteContext;
 import lombok.Builder;
+
+import java.util.Map;
 
 public class RuleLight extends RuleMain {
 
@@ -15,16 +16,21 @@ public class RuleLight extends RuleMain {
     }
 
     @Override
-    public Double getDiscount(IngredientesContext context, Ingrediente ingrediente, Double totalPrice) {
-
-        Integer qtyAlface = context.getContext().getOrDefault(getTargetIngredienteName(), 0);
-        Integer qtyBacon = context.getContext().getOrDefault(BACON_NAME, 0);
-
-        if ((qtyAlface > 0) && qtyBacon == 0) {
-            return totalPrice * PERCENTAGE_OF_DISCOUNT;
-        }
-
-        return 0.0;
+    public Double getDiscount(IngredienteContext context, Double totalPrice) {
+        /* find bacon in context, if present it has a value */
+        Integer baconQty = context.getEntryByName(BACON_NAME)
+                .map(Map.Entry::getValue)
+                .orElse(0);
+        /* find alface in context, if present, it will check baconQty if it's greater then 0, if yes this rule is not valid. */
+        /* otherwise, we will return a 10% of discount */
+        return context.getEntryByName(getTargetIngredienteName())
+                .map(entry -> {
+                            if (baconQty > 0) {
+                                return 0.0;
+                            }
+                            return totalPrice * PERCENTAGE_OF_DISCOUNT;
+                        }
+                ).orElse(0.0);
     }
 
 

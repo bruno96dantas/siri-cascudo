@@ -50,7 +50,7 @@ public abstract class Rule {
 
     public abstract void validate();
 
-    public abstract boolean evaluate(IngredientesContext context);
+    public abstract boolean evaluate(IngredienteContext context);
 
 
 

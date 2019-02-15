@@ -32,7 +32,7 @@ public class EqualsRule extends Rule {
     }
 
     @Override
-    public boolean evaluate(IngredientesContext context) {
+    public boolean evaluate(IngredienteContext context) {
         return false;
     }
 

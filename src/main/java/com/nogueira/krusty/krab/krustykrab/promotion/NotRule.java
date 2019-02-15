@@ -32,6 +32,11 @@ public class NotRule extends Rule {
     }
 
     @Override
+    public boolean evaluate(IngredientesContext context) {
+        return false;
+    }
+
+
     public Double getDiscont(Double totalPrice) {
         return null;
     }

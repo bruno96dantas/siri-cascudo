@@ -24,14 +24,14 @@ public class AndRule extends Rule {
     }
 
     @Override
-    public Double getDiscont(Double totalPrice) {
-        return null;
+    public void validate() {
+        if (!atLeastTwoChilddren.test(this)) {
+            throw new RuntimeException("And Rule must have at least two children. ConditionId: " + getId());
+        }
     }
 
     @Override
-    public void validate() {
-        if (!atLeastTwoChilddren.test(this)) {
-            throw new RuntimeException("And Rule must have at least two children. ConditionId: " + id);
-        }
+    public boolean evaluate(IngredientesContext context) {
+        return false;
     }
 }

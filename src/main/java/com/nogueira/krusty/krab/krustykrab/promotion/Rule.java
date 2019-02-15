@@ -1,20 +1,55 @@
 package com.nogueira.krusty.krab.krustykrab.promotion;
 
-import com.nogueira.krusty.krab.krustykrab.model.Ingrediente;
-import com.nogueira.krusty.krab.krustykrab.model.QuantidadeIngrediente;
 
-import java.util.Map;
-import java.util.Optional;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import java.util.Set;
+import java.util.function.Predicate;
+
+import static javax.persistence.EnumType.STRING;
+import static javax.persistence.InheritanceType.SINGLE_TABLE;
+
+@Table(name = "rule")
+@Entity
+@Inheritance(strategy = SINGLE_TABLE)
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name = "operator")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public abstract class Rule {
 
-    public abstract Optional<Double> getPrice(QuantidadeIngrediente quantidadeIngrediente, Map<String, Integer> context);
+    protected static final Predicate<Rule> hasChildren = rule -> rule.getChildren() != null
+            && !rule.getChildren().isEmpty();
 
-    abstract String getTargetIngredienteName();
+    protected static final Predicate<Rule> atLeastTwoChilddren = hasChildren
+            .and(rule -> rule.getChildren().size() > 1);
 
-    boolean isTargetIngrediente(String ingredienteName){
-        return Optional.ofNullable(ingredienteName)
-                .map(name -> name.equalsIgnoreCase(getTargetIngredienteName()))
-                .orElseThrow(() -> new RuntimeException("ingredienteName can't be null!"));
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long id;
+
+    @Enumerated(STRING)
+    @Column(insertable = false, updatable = false)
+    protected Operator operator;
+
+    @ManyToOne
+    @JoinColumn(name = "parentId")
+    protected Rule parent;
+
+    @OneToMany(mappedBy = "parent", fetch = FetchType.EAGER)
+    protected Set<Rule> children;
+
+    private String targetIngredienteName;
+
+    public boolean isTargetIngrediente(String ingredienteName) {
+        return ingredienteName.equalsIgnoreCase(getTargetIngredienteName());
     }
+
+    public abstract void validate();
+
+    public abstract Double getDiscont(Double totalPrice);
+
 }

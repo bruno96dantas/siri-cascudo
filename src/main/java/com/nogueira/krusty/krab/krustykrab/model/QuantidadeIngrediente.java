@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Data
 @AllArgsConstructor
@@ -27,7 +28,22 @@ public class QuantidadeIngrediente {
 
     private Integer quatity;
 
-    public Float getTotalPrice() {
+    public Double getTotalPrice() {
         return quatity * ingrediente.getPrice();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        QuantidadeIngrediente that = (QuantidadeIngrediente) o;
+        return lanche.equals(that.lanche) &&
+                ingrediente.equals(that.ingrediente) &&
+                quatity.equals(that.quatity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lanche, ingrediente, quatity);
     }
 }

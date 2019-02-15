@@ -25,5 +25,5 @@ public class Pedido {
 
     private boolean custom;
 
-    private Float price;
+    private Double price;
 }

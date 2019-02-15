@@ -20,7 +20,7 @@ public class Ingrediente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Float price;
+    private Double price;
     private String name;
 
 }

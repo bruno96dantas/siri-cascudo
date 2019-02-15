@@ -22,7 +22,7 @@ public class Lanche {
 
     private String name;
 
-    private Float price;
+    private Double price;
 
     @OneToMany
     private Set<QuantidadeIngrediente> ingredientes;

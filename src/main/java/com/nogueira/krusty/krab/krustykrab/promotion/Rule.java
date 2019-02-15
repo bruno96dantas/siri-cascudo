@@ -1,12 +1,14 @@
 package com.nogueira.krusty.krab.krustykrab.promotion;
 
 import com.nogueira.krusty.krab.krustykrab.model.Ingrediente;
+import com.nogueira.krusty.krab.krustykrab.model.QuantidadeIngrediente;
 
+import java.util.Map;
 import java.util.Optional;
 
 public abstract class Rule {
 
-    public abstract Optional<Float> getPrice(Ingrediente ingrediente);
+    public abstract Optional<Double> getPrice(QuantidadeIngrediente quantidadeIngrediente, Map<String, Integer> context);
 
     abstract String getTargetIngredienteName();
 

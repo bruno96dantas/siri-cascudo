@@ -1,26 +1,23 @@
 package com.nogueira.krusty.krab.krustykrab.model;
 
+import lombok.Getter;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public enum Ingrediente {
 
-import javax.persistence.*;
+    HAMBURGER(1.0, "HAMBURGER"),
+    ALFACE(1.0, "ALFACE"),
+    BACON(1.0, "BACON"),
+    OVO(1.0, "OVO"),
+    QUEIJO(1.0, "QUEIJO");
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Entity
-@Table(name = "ingrediente")
-public class Ingrediente {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @Getter
     private Double price;
+    @Getter
     private String name;
+
+    Ingrediente(Double price, String name) {
+        this.price = price;
+        this.name = name;
+    }
 
 }

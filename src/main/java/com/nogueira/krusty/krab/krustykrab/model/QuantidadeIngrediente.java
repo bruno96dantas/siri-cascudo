@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Objects;
 
+import static javax.persistence.EnumType.STRING;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,13 +25,13 @@ public class QuantidadeIngrediente {
     @ManyToOne
     private Lanche lanche;
 
-    @ManyToOne
+    @Enumerated(STRING)
     private Ingrediente ingrediente;
 
-    private Integer quatity;
+    private Integer quantity;
 
     public Double getTotalPrice() {
-        return quatity * ingrediente.getPrice();
+        return quantity * ingrediente.getPrice();
     }
 
     @Override
@@ -39,11 +41,11 @@ public class QuantidadeIngrediente {
         QuantidadeIngrediente that = (QuantidadeIngrediente) o;
         return lanche.equals(that.lanche) &&
                 ingrediente.equals(that.ingrediente) &&
-                quatity.equals(that.quatity);
+                quantity.equals(that.quantity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lanche, ingrediente, quatity);
+        return Objects.hash(lanche, ingrediente, quantity);
     }
 }

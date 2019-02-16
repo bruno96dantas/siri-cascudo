@@ -15,9 +15,9 @@ public class IngredienteContext {
 
     private Map<Ingrediente, Integer> context;
 
-    public Optional<Map.Entry<Ingrediente, Integer>> getEntryByName(String ingredienteName) {
+    public Optional<Map.Entry<Ingrediente, Integer>> getEntry(Ingrediente ingrediente) {
         return context.entrySet().stream()
-                .filter(entry -> entry.getKey().getName().equalsIgnoreCase(ingredienteName))
+                .filter(entry -> entry.getKey().equals(ingrediente))
                 .findFirst();
     }
 }

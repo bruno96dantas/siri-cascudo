@@ -33,9 +33,6 @@ Existe uma exceção à regra para o cálculo de preço, quando o lanche pertenc
 | Inflação | Os valores dos ingredientes são alterados com frequência e não gastaríamos que isso influenciasse nos testes automatizados. |
 
 
-
-
-
 **CRITÉRIOS DE COMPLETUDE**
 
 O projeto deve ser entregue atendendo aos seguintes critérios
@@ -45,3 +42,11 @@ O projeto deve ser entregue atendendo aos seguintes critérios
 - Deve possuir cobertura de testes automatizados para os seguintes pontos: Valor dos lanches de cardápio, regra para cálculo de preço e promoções.
 - Não é necessário se preocupar com a autenticação dos usuários.
 - Não é necessário persistir os dados em um banco, pode fazer armazenamento em memória.
+
+** PERGUNTAS SOBRE REQUISITOS **
+
+- É necessario criar um mecanismo para cadastro de regras?
+- É necessario criar um cadastro para lanches?
+- É necessario criar um pedido para que eu possa incluir mais que um lanche?
+- Duas ou mais regras podem ser aplicadas para o mesmo lanche?
+- Podemos ter outros ingredientes?

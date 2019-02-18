@@ -4,38 +4,45 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
 
-import javax.persistence.*;
-import java.util.Set;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
+
+import static java.util.stream.Collectors.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
-@Table(name = "lanche")
 public class Lanche {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     private String name;
 
-    private Double price;
+    private List<Ingrediente> ingredientes;
 
-    @OneToMany
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private Set<QuantidadeIngrediente> ingredientes;
-
-    public Double getTotalPrice() {
+    public Map<Ingrediente, Integer> getIngredienteQuantity() {
+        // why long? because it is the biggest 64-bit primitive value that java has
         return ingredientes.stream()
-                .map(QuantidadeIngrediente::getTotalPrice)
-                .mapToDouble(Double::doubleValue)
-                .sum();
+                .collect(groupingBy(Function.identity(), counting()))
+                .entrySet()
+                .stream()
+                .collect(toMap(Map.Entry::getKey, entry -> entry.getValue().intValue()));
+
     }
 
+    public BigDecimal getTotalPrice() {
+        return getIngredienteQuantity().entrySet().stream()
+                .map(entry -> entry.getKey().getPrice().multiply(new BigDecimal(entry.getValue())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 
+    @Override
+    public String toString() {
+        return "Lanche{" +
+                "name='" + name + '\'' +
+                ", ingredientes=" + ingredientes +
+                '}';
+    }
 }

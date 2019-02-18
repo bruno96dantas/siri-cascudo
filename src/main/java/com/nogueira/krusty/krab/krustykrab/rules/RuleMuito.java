@@ -3,7 +3,9 @@ package com.nogueira.krusty.krab.krustykrab.rules;
 import com.nogueira.krusty.krab.krustykrab.model.Ingrediente;
 import com.nogueira.krusty.krab.krustykrab.promotion.IngredienteContext;
 
-public abstract class RuleMuito extends RuleMain {
+import java.math.BigDecimal;
+
+public abstract class RuleMuito extends Rule {
 
     private final int MINIMUM_PORTION = 3;
 
@@ -19,7 +21,7 @@ public abstract class RuleMuito extends RuleMain {
      * @return Total de desconto para essa Rule caso seja o target
      */
     @Override
-    public Double getDiscount(IngredienteContext context, Double totalPrice) {
+    public Double getDiscount(IngredienteContext context, BigDecimal totalPrice) {
         /* find entity name in context*/
         return context.getEntry(getTargetIngrediente())
                 .map(entry -> {
@@ -29,7 +31,7 @@ public abstract class RuleMuito extends RuleMain {
                     Ingrediente ingrediente = entry.getKey();
                     /* int variable will always round down, so 5/3 = 1.66 = 1 */
                     int i = targetIngredientQty / MINIMUM_PORTION;
-                    return i * ingrediente.getPrice();
+                    return i * ingrediente.getPrice().doubleValue();
                 })
                 /* if no match, return zero discount */
                 .orElse(0.0);

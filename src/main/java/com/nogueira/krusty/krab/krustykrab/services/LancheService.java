@@ -1,13 +1,14 @@
 package com.nogueira.krusty.krab.krustykrab.services;
 
-import com.nogueira.krusty.krab.krustykrab.model.Ingrediente;
+import com.nogueira.krusty.krab.krustykrab.model.Cardapio;
 import com.nogueira.krusty.krab.krustykrab.model.Lanche;
-import com.nogueira.krusty.krab.krustykrab.promotion.IngredienteContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.Map;
+import java.util.List;
+
+import static java.util.Arrays.asList;
 
 @Service
 public class LancheService {
@@ -18,21 +19,23 @@ public class LancheService {
 
     public BigDecimal calculatePrice(Lanche lanche) {
 
-        Map<Ingrediente, Integer> contextMap = lanche.getIngredienteQuantity();
-
-        IngredienteContext context = IngredienteContext.builder()
-                .context(contextMap)
-                .build();
-
         BigDecimal lanchePrice = lanche.getTotalPrice();
 
-        double totalDiscount = rulesService.getDiscount(lanchePrice, context);
+        BigDecimal totalDiscount = rulesService.getDiscount(lanche);
 
-        if (totalDiscount > lanchePrice.doubleValue()) {
-            throw new RuntimeException("Well this should not happen. Sorry.");
+        // -1 means that that totalDiscount is greater then lanchePrice
+        if (lanchePrice.compareTo(totalDiscount) < 0) {
+            throw new RuntimeException("We got more discount than the price");
         }
 
-        return lanchePrice.subtract(BigDecimal.valueOf(totalDiscount));
+        return lanchePrice.subtract(totalDiscount);
+    }
+
+    public List<Lanche> getLanchesInCardapio() {
+        return asList(Cardapio.XBACON.getLanche(),
+                Cardapio.XBURGER.getLanche(),
+                Cardapio.XEGG.getLanche(),
+                Cardapio.XEGGBACON.getLanche());
     }
 
 

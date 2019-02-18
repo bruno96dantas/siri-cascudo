@@ -1,5 +1,7 @@
 package com.nogueira.krusty.krab.krustykrab.services;
 
+import com.nogueira.krusty.krab.krustykrab.model.Ingrediente;
+import com.nogueira.krusty.krab.krustykrab.model.Lanche;
 import com.nogueira.krusty.krab.krustykrab.promotion.IngredienteContext;
 import com.nogueira.krusty.krab.krustykrab.rules.Rule;
 import com.nogueira.krusty.krab.krustykrab.rules.RuleLight;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import static java.util.Arrays.asList;
 
@@ -17,12 +20,19 @@ public class RulesService {
 
     private final List<Rule> applicableRules = asList(new RuleLight(), new RuleMuitoQueijo(), new RuleMuitaCarne());
 
+    public BigDecimal getDiscount(Lanche lanche) {
+        Map<Ingrediente, Integer> contextMap = lanche.getIngredienteQuantity();
 
-    public Double getDiscount(BigDecimal lanchePrice, IngredienteContext context) {
+        IngredienteContext context = IngredienteContext.builder()
+                .context(contextMap)
+                .build();
+
+        BigDecimal lanchePrice = lanche.getTotalPrice();
+
         return applicableRules.stream()
                 .map(rule -> rule.getDiscount(context, lanchePrice))
-                .mapToDouble(Double::doubleValue)
-                .sum();
+                .map(BigDecimal::valueOf)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
 

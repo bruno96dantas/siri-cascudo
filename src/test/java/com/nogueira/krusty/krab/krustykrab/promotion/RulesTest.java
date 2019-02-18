@@ -1,8 +1,8 @@
 package com.nogueira.krusty.krab.krustykrab.promotion;
 
 
-import com.nogueira.krusty.krab.krustykrab.rules.RuleLight;
 import com.nogueira.krusty.krab.krustykrab.rules.Rule;
+import com.nogueira.krusty.krab.krustykrab.rules.RuleLight;
 import com.nogueira.krusty.krab.krustykrab.rules.RuleMuitaCarne;
 import com.nogueira.krusty.krab.krustykrab.rules.RuleMuitoQueijo;
 import org.junit.Before;

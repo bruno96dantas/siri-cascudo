@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.assertj.core.api.Assertions.entry;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LancheTest {

@@ -20,7 +20,7 @@ public class RuleLight extends Rule {
     }
 
     @Override
-    public Double getDiscount(IngredienteContext context, BigDecimal totalPrice) {
+    public Double getDiscount(IngredienteContext context) {
         /* find bacon in context, if present it has a value */
         Integer baconQty = context.getEntry(BACON)
                 .map(Map.Entry::getValue)
@@ -34,7 +34,7 @@ public class RuleLight extends Rule {
                                 log.debug("Discount not applicable because we have {} instead of zero ", baconQty);
                                 return 0.0;
                             }
-                            return totalPrice.multiply(BigDecimal.valueOf(PERCENTAGE_OF_DISCOUNT)).doubleValue();
+                            return context.getTotalPrice().multiply(BigDecimal.valueOf(PERCENTAGE_OF_DISCOUNT)).doubleValue();
                         }
                 )
                 /* If targetIngrediente is not in the context, zero discount */

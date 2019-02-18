@@ -18,7 +18,7 @@ import static org.mockito.Mockito.doReturn;
 public class LancheServiceTest {
 
     @Mock
-    private RulesService rulesService;
+    private DiscountService discountService;
 
     @InjectMocks
     private LancheService lancheService;
@@ -28,7 +28,7 @@ public class LancheServiceTest {
 
         Lanche lanche = Cardapio.XBACON.getLanche();
 
-        doReturn(BigDecimal.TEN).when(rulesService).getDiscount(eq(lanche));
+        doReturn(BigDecimal.TEN).when(discountService).getDiscount(eq(lanche));
 
         lancheService.calculatePrice(lanche);
     }

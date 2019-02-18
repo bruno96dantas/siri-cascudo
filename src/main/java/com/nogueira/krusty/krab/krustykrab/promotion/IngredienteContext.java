@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Optional;
 
@@ -14,6 +15,8 @@ import java.util.Optional;
 public class IngredienteContext {
 
     private Map<Ingrediente, Integer> context;
+
+    private BigDecimal totalPrice;
 
     public Optional<Map.Entry<Ingrediente, Integer>> getEntry(Ingrediente ingrediente) {
         return context.entrySet().stream()

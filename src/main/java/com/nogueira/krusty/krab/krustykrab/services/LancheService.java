@@ -14,14 +14,14 @@ import static java.util.Arrays.asList;
 public class LancheService {
 
     @Autowired
-    private RulesService rulesService;
+    private DiscountService discountService;
 
 
     public BigDecimal calculatePrice(Lanche lanche) {
 
         BigDecimal lanchePrice = lanche.getTotalPrice();
 
-        BigDecimal totalDiscount = rulesService.getDiscount(lanche);
+        BigDecimal totalDiscount = discountService.getDiscount(lanche);
 
         // -1 means that that totalDiscount is greater then lanchePrice
         if (lanchePrice.compareTo(totalDiscount) < 0) {

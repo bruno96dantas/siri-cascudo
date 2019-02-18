@@ -21,7 +21,7 @@ public abstract class RuleMuito extends Rule {
      * @return Total de desconto para essa Rule caso seja o target
      */
     @Override
-    public Double getDiscount(IngredienteContext context, BigDecimal totalPrice) {
+    public Double getDiscount(IngredienteContext context) {
         /* find entity name in context*/
         return context.getEntry(getTargetIngrediente())
                 .map(entry -> {

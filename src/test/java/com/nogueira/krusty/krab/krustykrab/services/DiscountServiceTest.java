@@ -18,7 +18,7 @@ import static java.util.Arrays.asList;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @RunWith(MockitoJUnitRunner.class)
-public class RulesServiceTest {
+public class DiscountServiceTest {
 
     private static final Percentage PERCENTAGE = Percentage.withPercentage(0.01);
 
@@ -27,7 +27,7 @@ public class RulesServiceTest {
             .reduce(BigDecimal.ZERO, BigDecimal::add);
 
     @InjectMocks
-    private RulesService rulesService;
+    private DiscountService discountService;
 
     @Test
     public void shouldGeneratePriceAndGetPromotionRuleLight() {
@@ -40,7 +40,7 @@ public class RulesServiceTest {
 
         BigDecimal originalPrice = guilhermeEspecial.getTotalPrice();
 
-        BigDecimal discount = rulesService.getDiscount(guilhermeEspecial);
+        BigDecimal discount = discountService.getDiscount(guilhermeEspecial);
 
         assertThat(discount)
                 .isCloseTo(originalPrice.multiply(BigDecimal.valueOf(0.1)), PERCENTAGE);
@@ -61,7 +61,7 @@ public class RulesServiceTest {
 
         assertThat(originalPrice).isEqualTo(valueSupplier.apply(ingredientes));
 
-        BigDecimal discount = rulesService.getDiscount(guilhermeEspecial);
+        BigDecimal discount = discountService.getDiscount(guilhermeEspecial);
 
         assertThat(discount)
                 .isCloseTo(HAMBURGER.getPrice(), PERCENTAGE); // 1 Hamburguer for free
@@ -75,7 +75,7 @@ public class RulesServiceTest {
 
         assertThat(originalPrice).isEqualTo(valueSupplier.apply(ingredientes));
 
-        discount = rulesService.getDiscount(guilhermeEspecial);
+        discount = discountService.getDiscount(guilhermeEspecial);
 
         assertThat(discount)
                 .isCloseTo(HAMBURGER.getPrice().multiply(BigDecimal.valueOf(2.0)), PERCENTAGE); // 2 Hamburguer for free
@@ -95,7 +95,7 @@ public class RulesServiceTest {
 
         assertThat(originalPrice).isEqualTo(valueSupplier.apply(ingredientes));
 
-        BigDecimal discount = rulesService.getDiscount(guilhermeEspecial);
+        BigDecimal discount = discountService.getDiscount(guilhermeEspecial);
 
         assertThat(discount)
                 .isCloseTo(QUEIJO.getPrice(), PERCENTAGE); // 1 QUEIJO for free
@@ -108,7 +108,7 @@ public class RulesServiceTest {
 
         assertThat(originalPrice).isEqualTo(valueSupplier.apply(ingredientes));
 
-        discount = rulesService.getDiscount(guilhermeEspecial);
+        discount = discountService.getDiscount(guilhermeEspecial);
 
         assertThat(discount)
                 .isCloseTo(QUEIJO.getPrice().multiply(BigDecimal.valueOf(2.0)), PERCENTAGE); // 2 queijos for free
@@ -129,7 +129,7 @@ public class RulesServiceTest {
 
         assertThat(originalPrice).isEqualTo(valueSupplier.apply(ingredientes));
 
-        BigDecimal promotionPrice = rulesService.getDiscount(guilhermeEspecial);
+        BigDecimal promotionPrice = discountService.getDiscount(guilhermeEspecial);
 
         assertThat(promotionPrice)
                 .isCloseTo(BigDecimal.ZERO
@@ -147,7 +147,7 @@ public class RulesServiceTest {
                 Cardapio.XEGGBACON.getLanche());
 
         BigDecimal totalDiscount = lanches.stream()
-                .map(rulesService::getDiscount)
+                .map(discountService::getDiscount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         assertThat(totalDiscount).isCloseTo(BigDecimal.ZERO, PERCENTAGE);

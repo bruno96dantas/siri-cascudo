@@ -13,24 +13,34 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
+import static com.nogueira.krusty.krab.krustykrab.Utils.IngredienteUtils.getIngredienteQuantity;
+import static com.nogueira.krusty.krab.krustykrab.Utils.IngredienteUtils.getTotalPrice;
 import static java.util.Arrays.asList;
 
 @Component
-public class RulesService {
+public class DiscountService {
 
     private final List<Rule> applicableRules = asList(new RuleLight(), new RuleMuitoQueijo(), new RuleMuitaCarne());
 
     public BigDecimal getDiscount(Lanche lanche) {
-        Map<Ingrediente, Integer> contextMap = lanche.getIngredienteQuantity();
+
+        return getDiscount(lanche.getIngredientes());
+
+    }
+
+    public BigDecimal getDiscount(List<Ingrediente> ingredientes) {
+
+        Map<Ingrediente, Integer> contextMap = getIngredienteQuantity(ingredientes);
+
+        BigDecimal totalPrice = getTotalPrice(ingredientes);
 
         IngredienteContext context = IngredienteContext.builder()
                 .context(contextMap)
+                .totalPrice(totalPrice)
                 .build();
 
-        BigDecimal lanchePrice = lanche.getTotalPrice();
-
         return applicableRules.stream()
-                .map(rule -> rule.getDiscount(context, lanchePrice))
+                .map(rule -> rule.getDiscount(context))
                 .map(BigDecimal::valueOf)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }

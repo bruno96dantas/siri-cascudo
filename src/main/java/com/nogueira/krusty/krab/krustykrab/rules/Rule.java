@@ -13,6 +13,6 @@ public abstract class Rule {
 
     private Ingrediente targetIngrediente;
 
-    public abstract Double getDiscount(IngredienteContext context, BigDecimal totalPrice);
+    public abstract Double getDiscount(IngredienteContext context);
 
 }

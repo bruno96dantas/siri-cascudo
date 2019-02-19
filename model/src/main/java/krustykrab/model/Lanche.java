@@ -1,23 +1,26 @@
 package krustykrab.model;
 
 import krustykrab.utils.IngredienteUtils;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@Builder
+
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Lanche {
 
     private String name;
-
     private List<Ingrediente> ingredientes;
+    private BigDecimal price;
+
+    @Builder
+    public Lanche(String name, List<Ingrediente> ingredientes) {
+        this.name = name;
+        this.ingredientes = ingredientes;
+        this.price = getTotalPrice();
+    }
 
     public BigDecimal getTotalPrice() {
         return IngredienteUtils.getTotalPrice(getIngredientes());

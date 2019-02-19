@@ -17,7 +17,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @AutoConfigureMockMvc
 @ContextConfiguration(classes = KrustyKrabTestConfiguration.class)
 @ActiveProfiles({"${env:local}", "${user.name}", "test", "${env:local}-test", "${user.name}-test"})
-public class TestCommon {
+public abstract class TestCommon {
 
     @Autowired
     protected KrustyKrabClient krustyKrabClient;

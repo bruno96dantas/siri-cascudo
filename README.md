@@ -32,7 +32,6 @@ Existe uma exceção à regra para o cálculo de preço, quando o lanche pertenc
 | Muito queijo | A cada 3 porções de queijo o cliente só paga 2. Se o lanche tiver 6 porções, ocliente pagará 4. Assim por diante... |
 | Inflação | Os valores dos ingredientes são alterados com frequência e não gastaríamos que isso influenciasse nos testes automatizados. |
 
-
 **CRITÉRIOS DE COMPLETUDE**
 
 O projeto deve ser entregue atendendo aos seguintes critérios
@@ -43,10 +42,26 @@ O projeto deve ser entregue atendendo aos seguintes critérios
 - Não é necessário se preocupar com a autenticação dos usuários.
 - Não é necessário persistir os dados em um banco, pode fazer armazenamento em memória.
 
-** PERGUNTAS SOBRE REQUISITOS **
+**PERGUNTAS SOBRE REQUISITOS**
 
 - É necessario criar um mecanismo para cadastro de regras?
 - É necessario criar um cadastro para lanches?
 - É necessario criar um pedido para que eu possa incluir mais que um lanche?
 - Duas ou mais regras podem ser aplicadas para o mesmo lanche?
 - Podemos ter outros ingredientes?
+
+**Instruções para executar**
+
+**server-side**
+
+- Caso você esteja rodando pelo IDE (Intellij por exemplo), depois de baixar as dependencias, execute a classe "KrustyKrabApplication".
+
+- Caso queira executar pelo terminal: 
+  - Ir até o pom.xml do modulo api, e descomente a dependencia "spring-boot-starter-tomcat"
+  - no modulo root ou api, rodar a instrução do maven "mvn package" 
+  - Ir até o diretorio target do modulo api e rodar "java -jar api-0.0.1-SNAPSHOT.jar"
+
+
+**client-side**
+
+Depois que o server_side estiver rodando, abrir o arquivo "KrustyKrab_CLIENT.html"

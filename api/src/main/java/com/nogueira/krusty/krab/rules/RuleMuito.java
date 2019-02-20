@@ -1,7 +1,7 @@
 package com.nogueira.krusty.krab.rules;
 
 import com.nogueira.krusty.krab.model.Ingrediente;
-import com.nogueira.krusty.krab.unit.promotion.IngredienteContext;
+import com.nogueira.krusty.krab.promotion.IngredienteContext;
 
 public abstract class RuleMuito extends Rule {
 
@@ -34,5 +34,19 @@ public abstract class RuleMuito extends Rule {
                 /* if no match, return zero discount */
                 .orElse(0.0);
     }
+
+    public static class RuleMuitaCarne extends RuleMuito {
+        public RuleMuitaCarne() {
+            super(Ingrediente.HAMBURGER);
+        }
+    }
+
+    public static class RuleMuitoQueijo extends RuleMuito {
+
+        public RuleMuitoQueijo() {
+            super(Ingrediente.QUEIJO);
+        }
+    }
+
 
 }

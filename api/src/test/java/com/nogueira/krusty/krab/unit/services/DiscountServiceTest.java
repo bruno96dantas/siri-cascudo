@@ -3,6 +3,7 @@ package com.nogueira.krusty.krab.unit.services;
 import com.nogueira.krusty.krab.model.Cardapio;
 import com.nogueira.krusty.krab.model.Ingrediente;
 import com.nogueira.krusty.krab.model.Lanche;
+import com.nogueira.krusty.krab.services.DiscountService;
 import org.assertj.core.data.Percentage;
 import org.junit.Test;
 import org.junit.runner.RunWith;

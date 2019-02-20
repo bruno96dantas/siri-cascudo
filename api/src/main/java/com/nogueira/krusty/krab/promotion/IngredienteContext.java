@@ -1,4 +1,4 @@
-package com.nogueira.krusty.krab.unit.promotion;
+package com.nogueira.krusty.krab.promotion;
 
 import com.nogueira.krusty.krab.model.Ingrediente;
 import lombok.AllArgsConstructor;

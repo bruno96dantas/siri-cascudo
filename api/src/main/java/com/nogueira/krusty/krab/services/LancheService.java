@@ -1,4 +1,4 @@
-package com.nogueira.krusty.krab.unit.services;
+package com.nogueira.krusty.krab.services;
 
 import com.nogueira.krusty.krab.model.Cardapio;
 import com.nogueira.krusty.krab.model.Ingrediente;

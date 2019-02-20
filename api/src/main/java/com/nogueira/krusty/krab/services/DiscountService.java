@@ -1,12 +1,12 @@
-package com.nogueira.krusty.krab.unit.services;
+package com.nogueira.krusty.krab.services;
 
 import com.nogueira.krusty.krab.model.Ingrediente;
 import com.nogueira.krusty.krab.model.Lanche;
 import com.nogueira.krusty.krab.rules.Rule;
 import com.nogueira.krusty.krab.rules.RuleLight;
-import com.nogueira.krusty.krab.rules.RuleMuitaCarne;
-import com.nogueira.krusty.krab.rules.RuleMuitoQueijo;
-import com.nogueira.krusty.krab.unit.promotion.IngredienteContext;
+import com.nogueira.krusty.krab.promotion.IngredienteContext;
+import com.nogueira.krusty.krab.rules.RuleMuito.RuleMuitaCarne;
+import com.nogueira.krusty.krab.rules.RuleMuito.RuleMuitoQueijo;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;

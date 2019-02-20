@@ -3,6 +3,8 @@ package com.nogueira.krusty.krab.unit.services;
 
 import com.nogueira.krusty.krab.model.Cardapio;
 import com.nogueira.krusty.krab.model.Lanche;
+import com.nogueira.krusty.krab.services.DiscountService;
+import com.nogueira.krusty.krab.services.LancheService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

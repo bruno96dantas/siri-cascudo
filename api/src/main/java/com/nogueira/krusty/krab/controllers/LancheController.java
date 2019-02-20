@@ -2,7 +2,7 @@ package com.nogueira.krusty.krab.controllers;
 
 import com.nogueira.krusty.krab.model.Ingrediente;
 import com.nogueira.krusty.krab.model.Lanche;
-import com.nogueira.krusty.krab.unit.services.LancheService;
+import com.nogueira.krusty.krab.services.LancheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
 package com.nogueira.krusty.krab.rules;
 
 import com.nogueira.krusty.krab.model.Ingrediente;
-import com.nogueira.krusty.krab.unit.promotion.IngredienteContext;
+import com.nogueira.krusty.krab.promotion.IngredienteContext;
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 

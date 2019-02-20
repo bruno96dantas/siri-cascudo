@@ -29,9 +29,7 @@ public class LancheServiceTestIT extends TestCommon {
 
         List<Ingrediente> ingredientes = asList(HAMBURGER, OVO, BACON);
 
-        IngredientesDto ingredientesDto = dtoSupplier.apply(ingredientes);
-
-        ResponseEntity<Double> price = krustyKrabClient.getPrice(ingredientesDto);
+        ResponseEntity<Double> price = krustyKrabClient.getPrice(ingredientes);
 
         assertThat(price.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(price.getBody()).isNotNull();
@@ -44,9 +42,7 @@ public class LancheServiceTestIT extends TestCommon {
     public void shouldBeAbleToGetDicountForRuleLight() {
         List<Ingrediente> ingredientes = asList(ALFACE, HAMBURGER, HAMBURGER, OVO, QUEIJO);
 
-        IngredientesDto ingredientesDto = dtoSupplier.apply(ingredientes);
-
-        ResponseEntity<Double> price = krustyKrabClient.getPrice(ingredientesDto);
+        ResponseEntity<Double> price = krustyKrabClient.getPrice(ingredientes);
 
         assertThat(price.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(price.getBody()).isNotNull();
@@ -63,9 +59,7 @@ public class LancheServiceTestIT extends TestCommon {
     public void shouldBeAbleToGetDicountForRuleMuitaCarne() {
         List<Ingrediente> ingredientes = asList(ALFACE, BACON, HAMBURGER, HAMBURGER, HAMBURGER, OVO, QUEIJO);
 
-        IngredientesDto ingredientesDto = dtoSupplier.apply(ingredientes);
-
-        ResponseEntity<Double> price = krustyKrabClient.getPrice(ingredientesDto);
+        ResponseEntity<Double> price = krustyKrabClient.getPrice(ingredientes);
 
         assertThat(price.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(price.getBody()).isNotNull();
@@ -82,9 +76,7 @@ public class LancheServiceTestIT extends TestCommon {
     public void shouldBeAbleToGetDicountForRuleMuitoQueijo() {
         List<Ingrediente> ingredientes = asList(ALFACE, BACON, QUEIJO, QUEIJO, QUEIJO, OVO);
 
-        IngredientesDto ingredientesDto = dtoSupplier.apply(ingredientes);
-
-        ResponseEntity<Double> price = krustyKrabClient.getPrice(ingredientesDto);
+        ResponseEntity<Double> price = krustyKrabClient.getPrice(ingredientes);
 
         assertThat(price.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(price.getBody()).isNotNull();
@@ -100,10 +92,7 @@ public class LancheServiceTestIT extends TestCommon {
     @Test
     public void shouldBeAbleToGetDicountForAllRules() {
         List<Ingrediente> ingredientes = asList(ALFACE, HAMBURGER, HAMBURGER, HAMBURGER, OVO, QUEIJO, QUEIJO, QUEIJO);
-
-        IngredientesDto ingredientesDto = dtoSupplier.apply(ingredientes);
-
-        ResponseEntity<Double> price = krustyKrabClient.getPrice(ingredientesDto);
+        ResponseEntity<Double> price = krustyKrabClient.getPrice(ingredientes);
 
         assertThat(price.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(price.getBody()).isNotNull();

@@ -1,6 +1,7 @@
 package com.nogueira.krusty.krab.client;
 
 import com.nogueira.krusty.krab.client.dto.IngredientesDto;
+import com.nogueira.krusty.krab.model.Ingrediente;
 import com.nogueira.krusty.krab.model.Lanche;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -28,8 +29,8 @@ public class KrustyKrabClient {
         this.client = client;
     }
 
-    public ResponseEntity<Double> getPrice(IngredientesDto ingredientes) {
-        HttpEntity<IngredientesDto> requestEntity = new HttpEntity<>(ingredientes, getHttpHeaders());
+    public ResponseEntity<Double> getPrice(List<Ingrediente> ingredientes) {
+        HttpEntity<List<Ingrediente>> requestEntity = new HttpEntity<>(ingredientes, getHttpHeaders());
 
         return client.exchange(ROOT_URI + "/price", POST, requestEntity, Double.class);
     }

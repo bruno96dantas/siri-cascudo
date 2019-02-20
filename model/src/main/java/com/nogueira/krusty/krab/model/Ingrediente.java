@@ -23,4 +23,21 @@ public enum Ingrediente {
         this.name = name;
     }
 
+    public static Ingrediente create(String value) {
+        if (value == null) {
+            throw new IllegalArgumentException();
+        }
+        for (Ingrediente v : values()) {
+            if (value.equals(v.getName())) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
 }

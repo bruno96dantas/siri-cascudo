@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
+import static com.nogueira.krusty.krab.model.Ingrediente.*;
 import static java.util.Arrays.asList;
 
 @Service
@@ -38,6 +39,10 @@ public class LancheService {
                 Cardapio.XBURGER.getLanche(),
                 Cardapio.XEGG.getLanche(),
                 Cardapio.XEGGBACON.getLanche());
+    }
+
+    public List<Ingrediente> getIngredientes(){
+        return asList(ALFACE, HAMBURGER, QUEIJO, BACON, OVO);
     }
 
     public BigDecimal calculatePrice(List<Ingrediente> ingredientes) {

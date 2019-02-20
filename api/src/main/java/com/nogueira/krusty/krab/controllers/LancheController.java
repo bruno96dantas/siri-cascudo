@@ -1,6 +1,5 @@
 package com.nogueira.krusty.krab.controllers;
 
-import com.nogueira.krusty.krab.client.dto.IngredientesDto;
 import com.nogueira.krusty.krab.model.Ingrediente;
 import com.nogueira.krusty.krab.model.Lanche;
 import com.nogueira.krusty.krab.unit.services.LancheService;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -43,5 +41,15 @@ public class LancheController {
         List<Ingrediente> ingredientesEnum = ingredientes.stream().map(Ingrediente::create).collect(toList());
 
         return ResponseEntity.ok(lancheService.calculatePrice(ingredientesEnum));
+    }
+
+    /* get lan*/
+    @CrossOrigin
+    @PostMapping("/price/raw")
+    public ResponseEntity<BigDecimal> getRawPrice(@RequestBody List<String> ingredientes) {
+
+        List<Ingrediente> ingredientesEnum = ingredientes.stream().map(Ingrediente::create).collect(toList());
+
+        return ResponseEntity.ok(lancheService.getOriginalIngredientesPrice(ingredientesEnum));
     }
 }

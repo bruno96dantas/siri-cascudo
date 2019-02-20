@@ -20,6 +20,11 @@ public class LancheService {
     private DiscountService discountService;
 
 
+    /**
+     * Pega o preço total do lanche para depois validar com a quantidade de desconto, se maior, uma situação invalida.
+     *
+     * @return Preço total substraido pelo total de desconto
+     */
     public BigDecimal calculatePrice(Lanche lanche) {
 
         BigDecimal lanchePrice = lanche.getTotalPrice();
@@ -41,8 +46,15 @@ public class LancheService {
                 Cardapio.XEGGBACON.getLanche());
     }
 
-    public List<Ingrediente> getIngredientes(){
+    public List<Ingrediente> getIngredientes() {
         return asList(ALFACE, HAMBURGER, QUEIJO, BACON, OVO);
+    }
+
+    /**
+     * @return Raw price without promotion
+     */
+    public BigDecimal getOriginalIngredientesPrice(List<Ingrediente> ingredientes) {
+        return IngredienteUtils.getTotalPrice(ingredientes);
     }
 
     public BigDecimal calculatePrice(List<Ingrediente> ingredientes) {

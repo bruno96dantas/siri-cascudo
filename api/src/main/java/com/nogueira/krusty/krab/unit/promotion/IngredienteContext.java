@@ -18,6 +18,10 @@ public class IngredienteContext {
 
     private BigDecimal totalPrice;
 
+    /**
+     * Filtra o contexto pelo ingrediente e retorna a entry
+     * Find first estamos buscando pela key do mapa (não existe 2)
+     */
     public Optional<Map.Entry<Ingrediente, Integer>> getEntry(Ingrediente ingrediente) {
         return context.entrySet().stream()
                 .filter(entry -> entry.getKey().equals(ingrediente))

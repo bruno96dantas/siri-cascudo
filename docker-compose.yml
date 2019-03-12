@@ -1,0 +1,14 @@
+version: '3'
+services:
+  siri-cascudo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: siri-cascudo
+    ports:
+      - 8080:8080
+    networks:
+      - network1
+
+networks:
+  network1:
